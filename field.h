@@ -10,6 +10,7 @@ private:
 
 public:
   Field();
+  ~Field();
   void print(char symbol, Point coords);
   void printStr(char* str, Point coords);
   void createWindow(Point min, Point max, char bg);

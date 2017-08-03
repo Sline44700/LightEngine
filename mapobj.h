@@ -5,13 +5,14 @@
 class MapObj {
 private:
   Point coords;
-  string name;
+//  string name;
   char symbol;
   int health = -1;
   int color = 1;
 
 public:
   MapObj();
+  ~MapObj();
   Point getPos();
   void setPos(Point coords);
   void move(int side, int steps); // 0 - left, 1 - right, 2 - up, 3 - down

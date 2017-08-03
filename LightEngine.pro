@@ -29,4 +29,5 @@ HEADERS += \
     map.h \
     structures.h \
     field.h \
-    mapobj.h
+    mapobj.h \
+    defines.h
