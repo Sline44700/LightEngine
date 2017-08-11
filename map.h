@@ -4,21 +4,32 @@
 #include "mapobj.h"
 #include <fstream>
 
+class MapCell {
+public:
+  MapCell() {;}
+  ~MapCell() {delete obj;}
+  MapObj* obj;
+  Point coords; // TODO: replace to Vector pos;
+};
+
 class Map {
 private:
-  MapObj** tab;
+  MapCell** tab;
   Point size;
+  FILE file;
   void read(char** data);
+  void setSize(Point size);
 
 public:
-  Map();
+  Map(Point m_size);
+  Map(FILE file);
   ~Map();
   char** build(Point start, Point end); // возвращает кусок карты для объекта класса Field
-  void load(FILE data);
-  void save(FILE data);
+  void load();
+  void save();
   void destroy(); // уничтожает все объекты на карте
-  MapObj findObj(Point coords); // возвращает объект по координатам
-  void addObj(MapObj obj);
+  void addObj(MapObj* obj, Point coords);
+  MapObj* findObj(Point coords); // возвращает объект по координатам
 
 };
 

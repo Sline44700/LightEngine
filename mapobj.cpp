@@ -1,49 +1,25 @@
 #include "mapobj.h"
+#include "map.h"
 
-MapObj::MapObj() {
-  //
+MapObj::MapObj(Map *m_map, Point m_coords) {
+  m_map->addObj(this, coords);
+  coords = m_coords;
 }
 
 MapObj::~MapObj() {
+  delete map;
+}
+
+void MapObj::move(int side, int steps) {
   //
 }
 
-Point getPos() {
-  //
+/*Floor::Floor() {
+  symbol = ' ';
+  impenetrable = false;
+  MapObj();
 }
 
-void setPos(Point coords) {
-  //
-}
-
-void move(int side, int steps) {
-  //
-}
-
-int getHealth() {
-  //
-}
-
-void setHealth(int health) {
-  //
-}
-
-void damage(int health) {
-  //
-}
-
-char getSymbol() {
-  //
-}
-
-void setSymbol(char* symbol) {
-  //
-}
-
-int getColor() {
-  //
-}
-
-void setColor(int color) {
-  //
-}
+Floor::~Floor() {
+  ~MapObj();
+}*/
