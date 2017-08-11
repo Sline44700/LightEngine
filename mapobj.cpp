@@ -1,7 +1,7 @@
 #include "mapobj.h"
 #include "map.h"
 
-MapObj::MapObj(Map *m_map, Point m_coords) {
+MapObj::MapObj(Map *m_map, Vector m_coords) {
   coords = m_coords;
   m_map->addObj(this, coords);
 }

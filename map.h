@@ -6,30 +6,30 @@
 
 class MapCell {
 public:
-  inline MapCell() {;}
+  inline MapCell() {}
   inline ~MapCell() {/*delete obj;*/}
   MapObj* obj = NULL;
-  Point coords; // TODO: replace to Vector pos;
+  Vector coords; // TODO: replace to Vector pos;
 };
 
 class Map {
 private:
   MapCell** tab;
-  Point size;
+  Vector size;
   FILE file;
   void read(char** data);
-  void setSize(Point size);
+  void setSize(Vector size);
 
 public:
-  Map(Point m_size);
+  Map(Vector m_size);
   Map(FILE file);
   ~Map();
-  char** build(Point start, Point end); // возвращает кусок карты для объекта класса Field
+  char** build(Vector start, Vector end); // возвращает кусок карты для объекта класса Field
   void load();
   void save();
   void destroy(); // уничтожает все объекты на карте
-  void addObj(MapObj* obj, Point coords);
-  MapObj* findObj(Point coords); // возвращает объект по координатам
+  void addObj(MapObj* obj, Vector coords);
+  MapObj* findObj(Vector coords); // возвращает объект по координатам
 
 };
 

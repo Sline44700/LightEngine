@@ -12,16 +12,17 @@ using namespace std;
 
 int main(void) {
   Field* field = new Field();
-  Point start = {0, 0};
-  Point wall = {1, 1};
-  Point end = {32, 32};
-  Map* map = new Map(end);
-  Wall* w = new Wall(map, wall);
+  Map* map = new Map(Vector(17, 17));
+//  Wall wall(map, Vector(1, 1));
+
+  for (auto x = 1; x <= 16; x++)
+    for (auto y = 1; y <= 16; y++)
+      if (x == 1 || y == 1 || x == 16 || y == 16)
+        Wall wall(map, Vector(x, y));
 
   cout << "Light Engine v" << VERSION << endl;
-  field->import(map->build(start, end));
+  field->import(map->build(Vector(0, 0), Vector(16, 16)));
   field->refresh();
-//  map->build(start, end);
 
   return 0;
 }

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-Map::Map(Point m_size) {
+Map::Map(Vector m_size) {
   size = m_size;
   tab = new MapCell*[size.x];
   for (auto x = 0; x < size.x; x++) {
@@ -25,20 +25,23 @@ Map::~Map() {
   delete[] tab;*/
 }
 
-char** Map::build(Point start, Point end) {
-  Point size = {
-    end.x - start.x,
-    end.y - start.y,
-  };
+char** Map::build(Vector start, Vector end) {
+  Vector size(end.x - start.x, end.y - start.y);
   char** field = new char*[size.x];
   MapCell* cell;
 
-  for (auto x = 0; x < size.x; x++) {
+  if (size.x > this->size.x || size.y > this->size.y) {
+    std::cout << "POSHIV NAHUY" << std::endl;
+    return field;
+  }
+
+  for (auto x = 0; x <= size.x; x++) {
     field[x] = new char[size.y];
-    for (auto y = 0; y < size.y; y++) {
+    for (auto y = 0; y <= size.y; y++) {
       cell = &tab[x][y];
       if (cell != NULL && cell->obj != NULL)
-        field[x][y] = cell->obj->getSymbol();
+        //field[x][y] = cell->obj->getSymbol();
+        field[x][y] = 'w';
       else
         field[x][y] = ' ';
     }
@@ -47,7 +50,7 @@ char** Map::build(Point start, Point end) {
   return field;
 }
 
-void Map::setSize(Point size) {
+void Map::setSize(Vector size) {
   this->size = size;
 }
 
@@ -63,7 +66,7 @@ void Map::destroy() {
   //
 }\
 
-void Map::addObj(MapObj* obj, Point coords) {
+void Map::addObj(MapObj* obj, Vector coords) {
   MapCell* cell = &tab[coords.x][coords.y];
 
   if (cell->obj == NULL) {
@@ -72,7 +75,7 @@ void Map::addObj(MapObj* obj, Point coords) {
   }
 }
 
-MapObj* Map::findObj(Point coords) {
+MapObj* Map::findObj(Vector coords) {
   MapCell* cell = &tab[coords.x][coords.y];
   MapObj* obj = cell->obj;
 
