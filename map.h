@@ -6,9 +6,9 @@
 
 class MapCell {
 public:
-  MapCell() {;}
-  ~MapCell() {delete obj;}
-  MapObj* obj;
+  inline MapCell() {;}
+  inline ~MapCell() {/*delete obj;*/}
+  MapObj* obj = NULL;
   Point coords; // TODO: replace to Vector pos;
 };
 

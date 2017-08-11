@@ -12,7 +12,8 @@ private:
 public:
   Field();
   ~Field();
-  void import(char** tab);
+  void import(char** m_tab);
+  void refresh();
   void print(char symbol, Point coords);
   void printStr(char* str, Point coords);
   void createWindow(Point min, Point max, char bg);

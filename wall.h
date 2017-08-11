@@ -1,12 +1,12 @@
 #ifndef WALL_H
 #define WALL_H
 #include "map.h"
-#include "map.cpp"
 
 class Wall : public MapObj {
 public:
+//  using MapObj::MapObj;
 //  Wall(Map* map, Point coords) : MapObj(map, coords) {}
-  using MapObj::MapObj;
+  Wall(Map* map, Point coords);
 //  Wall::Wall();
 };
 

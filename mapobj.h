@@ -8,7 +8,7 @@ class MapObj {
 private:
   Point coords;
 //  string name;
-  char symbol;
+  char symbol = '?';
   int health = -1;
   int color = 1;
   Map* map;

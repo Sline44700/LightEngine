@@ -1,9 +1,11 @@
 #include "map.h"
 #include "mapobj.h"
 #include <fstream>
+#include <iostream>
 
 Map::Map(Point m_size) {
   size = m_size;
+  tab = new MapCell*[size.x];
   for (auto x = 0; x < size.x; x++) {
     tab[x] = new MapCell[size.y];
     /*for (auto y = 0; y < size.y; y++)
@@ -17,9 +19,10 @@ Map::Map(FILE file) {
 }
 
 Map::~Map() {
-  for (auto x = 0; x < size.x; x++)
+  std::cout << "Map deconstructed" << std::endl;
+/*  for (auto x = 0; x < size.x; x++)
     delete[] tab[x];
-  delete tab;
+  delete[] tab;*/
 }
 
 char** Map::build(Point start, Point end) {
@@ -28,11 +31,13 @@ char** Map::build(Point start, Point end) {
     end.y - start.y,
   };
   char** field = new char*[size.x];
+  MapCell* cell;
+
   for (auto x = 0; x < size.x; x++) {
     field[x] = new char[size.y];
     for (auto y = 0; y < size.y; y++) {
-      MapCell* cell = &tab[x][y];
-      if (cell != NULL)
+      cell = &tab[x][y];
+      if (cell != NULL && cell->obj != NULL)
         field[x][y] = cell->obj->getSymbol();
       else
         field[x][y] = ' ';
@@ -61,8 +66,10 @@ void Map::destroy() {
 void Map::addObj(MapObj* obj, Point coords) {
   MapCell* cell = &tab[coords.x][coords.y];
 
-  if (cell == NULL)
+  if (cell->obj == NULL) {
     cell->obj = obj;
+    std::cout << "Object '" << obj->getSymbol() << "' added to coords " << coords.x << " " << coords.y << std::endl;
+  }
 }
 
 MapObj* Map::findObj(Point coords) {
@@ -71,4 +78,5 @@ MapObj* Map::findObj(Point coords) {
 
   if (obj != NULL)
     return obj;
+  else return NULL;
 }
