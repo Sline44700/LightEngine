@@ -19,7 +19,7 @@ Map::Map(FILE file) {
 }
 
 Map::~Map() {
-  std::cout << "Map deconstructed" << std::endl;
+//  std::cout << "Map deconstructed" << std::endl;
 /*  for (auto x = 0; x < size.x; x++)
     delete[] tab[x];
   delete[] tab;*/
@@ -40,8 +40,7 @@ char** Map::build(Vector start, Vector end) {
     for (auto y = 0; y <= size.y; y++) {
       cell = &tab[x][y];
       if (cell != NULL && cell->obj != NULL)
-        //field[x][y] = cell->obj->getSymbol();
-        field[x][y] = 'w';
+        field[x][y] = cell->obj->getSymbol();
       else
         field[x][y] = ' ';
     }
@@ -71,7 +70,8 @@ void Map::addObj(MapObj* obj, Vector coords) {
 
   if (cell->obj == NULL) {
     cell->obj = obj;
-    std::cout << "Object '" << obj->getSymbol() << "' added to coords " << coords.x << " " << coords.y << std::endl;
+    // TODO: std -> Console
+//  std::cout << "Object '" << obj->getSymbol() << "' added to coords " << coords.x << " " << coords.y << std::endl;
   }
 }
 

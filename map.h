@@ -9,7 +9,7 @@ public:
   inline MapCell() {}
   inline ~MapCell() {/*delete obj;*/}
   MapObj* obj = NULL;
-  Vector coords; // TODO: replace to Vector pos;
+  Vector coords;
 };
 
 class Map {

@@ -2,11 +2,14 @@
 #define FIELD_H
 #include "structures.h"
 #include <iostream>
+#include <windows.h>
 
 class Field {
 private:
   char** tab;
   Vector size;
+  HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+  COORD cursorPos;
   void fill();
 
 public:
@@ -14,8 +17,9 @@ public:
   ~Field();
   void import(char** m_tab);
   void refresh();
+  void setCursorPos(Vector pos);
   void print(char symbol, Vector coords);
-  void printStr(char* str, Vector coords);
+  void printStr(const char* str, Vector coords);
   void createWindow(Vector min, Vector max, char bg);
 };
 

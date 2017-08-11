@@ -8,11 +8,11 @@ Field::Field() {
     for (auto y = 0; y < 32; y++)
       tab[x][y] = ' ';
   }
-  std::cout << "Object Field created" << std::endl;
+//  std::cout << "Object Field created" << std::endl;
 }
 
 Field::~Field() {
-  std::cout << "Field deconstructed" << std::endl;
+//  std::cout << "Field deconstructed" << std::endl;
   //
 }
 
@@ -29,17 +29,24 @@ void Field::import(char** m_tab) {
 void Field::refresh() {
   for (auto x = 0; x <= 16; x++) {
     for (auto y = 0; y <= 16; y++)
-      std::cout << tab[x][y];
-    std::cout << std::endl;
+      print(tab[x][y], Vector(x + 1, y + 2));
   }
 }
 
-void Field::print(char symbol, Vector coords) {
-  //
+void Field::setCursorPos(Vector pos) {
+  cursorPos.X = pos.x;
+  cursorPos.Y = pos.y;
+  SetConsoleCursorPosition(handle, cursorPos);
 }
 
-void Field::printStr(char* str, Vector coords) {
-  //
+void Field::print(char symbol, Vector coords) {
+  setCursorPos(coords);
+  std::cout << symbol;
+}
+
+void Field::printStr(const char* str, Vector coords) {
+  setCursorPos(coords);
+  std::cout << str;
 }
 
 void Field::createWindow(Vector min, Vector max, char bg) {
