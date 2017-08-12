@@ -126,3 +126,11 @@ MapObj* Map::findObj(Vector coords) {
     return obj;
   else return NULL;
 }
+
+bool Map::existObj(Vector coords) {
+  MapCell* cell = &tab[coords.x][coords.y];
+  MapObj* obj = cell->obj;
+
+  if (obj != NULL) return true;
+  else return false;
+}

@@ -30,6 +30,7 @@ public:
   void destroy(); // уничтожает все объекты на карте
   void addObj(MapObj* obj, Vector coords);
   MapObj* findObj(Vector coords); // возвращает объект по координатам
+  bool existObj(Vector coords); // проверяет, существует ли объект на данных коордах
   inline Vector getSize() {return size;}
 };
 
