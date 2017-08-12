@@ -1,4 +1,4 @@
-#include <iostream>
+//#include <iostream>
 #include <string.h>
 #include "defines.h"
 #include "field.h"
@@ -9,10 +9,14 @@
 #include "wall.h"
 #include "wall.cpp"
 
-using namespace std;
+//using namespace std;
+// TODO: 1) load/save
+//       2) Controller
+//       3) Console
+//       4) Camera?
 
 int main(void) {
-  Field* field = new Field();
+  Field* field = new Field(Vector(16, 16));
   Map* map = new Map(Vector(17, 17));
 
   for (auto x = 0; x <= 16; x++)
@@ -20,10 +24,7 @@ int main(void) {
       if (x == 0 || y == 0 || x == 16 || y == 16)
         Wall wall(map, Vector(x, y));
 
-  char str[32];
-  strcpy(str, "Light Engine v");
-  field->printStr(strcat(str, VERSION), Vector(0, 0));
-  field->import(map->build(Vector(0, 0), Vector(16, 16)));
+  field->import(map->build(Vector(0, 0), Vector(16, 16)), Vector(16, 16));
   field->refresh();
   field->print('@', Vector(2, 3));
   field->printStr("VIXODA HET", Vector(4, 10));

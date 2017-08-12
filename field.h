@@ -13,9 +13,9 @@ private:
   void fill();
 
 public:
-  Field();
+  Field(Vector m_size);
   ~Field();
-  void import(char** m_tab);
+  void import(char** m_tab, Vector m_size);
   void refresh();
   void setCursorPos(Vector pos);
   void print(char symbol, Vector coords);

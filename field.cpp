@@ -1,11 +1,12 @@
 #include "field.h"
 #include <iostream>
 
-Field::Field() {
-  tab = new char*[32];
-  for (auto x = 0; x < 32; x++) {
-    tab[x] = new char[32];
-    for (auto y = 0; y < 32; y++)
+Field::Field(Vector m_size) {
+  size = m_size;
+  tab = new char*[size.x];
+  for (auto x = 0; x <= size.x; x++) {
+    tab[x] = new char[size.y];
+    for (auto y = 0; y <= size.y; y++)
       tab[x][y] = ' ';
   }
 //  std::cout << "Object Field created" << std::endl;
@@ -20,15 +21,20 @@ void Field::fill() {
   //
 }
 
-void Field::import(char** m_tab) {
-  for (auto x = 0; x <= 16; x++)
-    for (auto y = 0; y <= 16; y++)
+void Field::import(char** m_tab, Vector m_size) {
+  for (auto x = 0; x <= size.x; x++)
+    for (auto y = 0; y <= size.y; y++)
       tab[x][y] = m_tab[x][y];
 }
 
 void Field::refresh() {
-  for (auto x = 0; x <= 16; x++) {
-    for (auto y = 0; y <= 16; y++)
+  char str[32];
+
+  strcpy(str, "Light Engine v");
+  printStr(strcat(str, VERSION), Vector(0, 0));
+
+  for (auto x = 0; x <= size.x; x++) {
+    for (auto y = 0; y <= size.y; y++)
       print(tab[x][y], Vector(x + 1, y + 2));
   }
 }

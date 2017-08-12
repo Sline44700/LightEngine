@@ -1,6 +1,6 @@
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
-//#include <cmath>
+#include <cmath>
 
 typedef struct {
   int x;
