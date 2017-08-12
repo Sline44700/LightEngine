@@ -42,8 +42,12 @@ void Field::refresh() {
   setColor(WHITE);
 
   for (auto x = 0; x <= size.x; x++)
-    for (auto y = 0; y <= size.y; y++)
-      print(tab[x][y], Vector(x + 1, y + 2));
+    for (auto y = 0; y <= size.y; y++) {
+      if (tab[x][y] != '.') // kostyl
+        print(tab[x][y], Vector(x + 1, y + 2));
+      else
+        print(tab[x][y], Vector(x + 1, y + 2), GRAY);
+    }
 }
 
 void Field::setCursorPos(Vector pos) {
