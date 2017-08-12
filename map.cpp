@@ -1,21 +1,22 @@
 #include "map.h"
 #include "mapobj.h"
+#include "wall.h"
 #include <fstream>
 #include <iostream>
 
 Map::Map(Vector m_size) {
   size = m_size;
   tab = new MapCell*[size.x];
-  for (auto x = 0; x < size.x; x++) {
+  for (auto x = 0; x <= size.x; x++) {
     tab[x] = new MapCell[size.y];
     /*for (auto y = 0; y < size.y; y++)
       tab[x][y] = Floor();*/
   }
 }
 
-Map::Map(std::ifstream& file) {
+Map::Map(char* name) {
 //  this->file = file;
-  load(file);
+  load(name);
 }
 
 Map::~Map() {
@@ -31,7 +32,7 @@ char** Map::build(Vector start, Vector end) {
   MapCell* cell;
 
   if (size.x > this->size.x || size.y > this->size.y) {
-    std::cout << "POSHIV NAHUY" << std::endl;
+    std::cout << "POSHIV NAHUY" << std::endl; // replace this
     return field;
   }
 
@@ -42,7 +43,7 @@ char** Map::build(Vector start, Vector end) {
       if (cell != NULL && cell->obj != NULL)
         field[x][y] = cell->obj->getSymbol();
       else
-        field[x][y] = ' ';
+        field[x][y] = '.';
     }
   }
 
@@ -53,11 +54,53 @@ void Map::setSize(Vector size) {
   this->size = size;
 }
 
-void Map::load(std::ifstream& file) {
-  //
+void Map::load(char* name) {
+  file.open(name, file.in);
+  if (!file.is_open())
+    return;
+
+  size.x = -2;
+  size.y = 0;
+  char symbol;
+  // finding out max of x coords
+  while (!file.eof()) {
+    file.get(symbol);
+    if (symbol != ' ') size.x++;
+    if (symbol == '\n') break;
+  }
+  file.seekg(0, file.beg);
+  file.clear();
+  // finding out max of x coords
+  while (!file.eof()) {
+    file.get(symbol);
+    if (symbol == '\n') size.y++;
+  }
+  file.seekg(0, file.beg);
+  file.clear();
+  // creating table
+  tab = new MapCell*[size.x];
+  for (auto x = 0; x <= size.x; x++)
+    tab[x] = new MapCell[size.y + 1];
+  // loading objs
+  file.seekg(0, file.beg);
+  file.clear();
+  for (auto x = 0; x <= size.x; x++)
+    for (auto y = 0; y <= size.y; y++) {
+      file.get(symbol);
+      if (symbol == ' ' || symbol == '\n') file.get(symbol);
+//      std::cout << std::endl << symbol << " " << x << " " << y;
+      if (symbol == '|') { new Wall(this, Vector(y, x)); }
+/*      switch(symbol) {
+        case '|' : { new Wall(this, Vector(x, y)); };
+        default : {};*/
+      }
 }
 
-void Map::save(std::ofstream& file) {
+void Map::save(char* name) {
+  file.open(name, file.out);
+  if (!file.is_open())
+    return;
+
   //
 }
 

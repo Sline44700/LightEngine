@@ -16,21 +16,21 @@ class Map {
 private:
   MapCell** tab;
   Vector size;
-//  FILE file;
+  std::fstream file;
   void read(char** data);
   void setSize(Vector size);
 
 public:
   Map(Vector m_size);
-  Map(std::ifstream& file);
+  Map(char* name);
   ~Map();
   char** build(Vector start, Vector end); // возвращает кусок карты для объекта класса Field
-  void load(std::ifstream& file);
-  void save(std::ofstream& file);
+  void load(char* name);
+  void save(char* name);
   void destroy(); // уничтожает все объекты на карте
   void addObj(MapObj* obj, Vector coords);
   MapObj* findObj(Vector coords); // возвращает объект по координатам
-
+  inline Vector getSize() {return size;}
 };
 
 #endif // MAP_H

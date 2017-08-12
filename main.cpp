@@ -1,3 +1,4 @@
+#include <conio.h>
 #include <string.h>
 #include "defines.h"
 #include "field.h"
@@ -7,11 +8,12 @@
 #include "mapobj.cpp"
 #include "wall.h"
 #include "wall.cpp"
+#include <iostream>
 
 //using namespace std;
 // TODO: 1) load/save
-//       2) Config
-//       3) Controller
+//       2) Controller
+//       3) Config
 //       4) Console
 //       5) Camera?
 
@@ -29,6 +31,18 @@ int main(void) {
   field->print('@', Vector(2, 3), HIGH_MAGENTA);
   field->printStr("VIXODA HET", Vector(4, 10), HIGH_RED);
   field->setCursorPos(Vector(0, 20));
+
+  getch();
+//  delete map;
+//  delete field;
+
+  char name[32];
+  Map* map2 = new Map(strcpy(name, "maps/easy.txt"));
+  Vector size = map2->getSize();
+  Field* field2 = new Field(size);
+  field2->import(map2->build(Vector(0, 0), size), size);
+  field2->refresh();
+  getch();
 
   return 0;
 }

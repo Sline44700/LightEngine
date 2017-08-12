@@ -27,5 +27,7 @@
 #define HIGH_MAGENTA 13
 #define HIGH_YELLOW 14
 #define WHITE 15
+// Others
+#define MAX_MAPNAME_SYMBOLS 32
 
 #endif // DEFINES_H
