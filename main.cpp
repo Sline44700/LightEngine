@@ -1,4 +1,3 @@
-//#include <iostream>
 #include <string.h>
 #include "defines.h"
 #include "field.h"
@@ -11,9 +10,10 @@
 
 //using namespace std;
 // TODO: 1) load/save
-//       2) Controller
-//       3) Console
-//       4) Camera?
+//       2) Config
+//       3) Controller
+//       4) Console
+//       5) Camera?
 
 int main(void) {
   Field* field = new Field(Vector(16, 16));

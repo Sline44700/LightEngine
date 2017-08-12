@@ -2,6 +2,7 @@
 #define FIELD_H
 #include "structures.h"
 #include <iostream>
+#include <cwchar>
 #include <windows.h>
 
 class Field {
@@ -10,6 +11,7 @@ private:
   Vector size;
   HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
   COORD cursorPos;
+  CONSOLE_FONT_INFOEX cfi;
   void fill();
 
 public:
@@ -19,6 +21,7 @@ public:
   void refresh();
   void setCursorPos(Vector pos);
   void setColor(int color);
+  void setFont(Vector size);
   void print(char symbol, Vector coords);
   void print(char symbol, Vector coords, int color);
   void printStr(const char* str, Vector coords);

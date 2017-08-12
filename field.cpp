@@ -9,6 +9,15 @@ Field::Field(Vector m_size) {
     for (auto y = 0; y <= size.y; y++)
       tab[x][y] = ' ';
   }
+
+  cfi.cbSize = sizeof(cfi);
+  cfi.nFont = 0;
+  cfi.dwFontSize.X = 14;
+  cfi.dwFontSize.Y = 14;
+  cfi.FontFamily = FF_DONTCARE;
+  cfi.FontWeight = FW_NORMAL;
+  std::wcscpy(cfi.FaceName, L"Courier New"); // Consolas
+  SetCurrentConsoleFontEx(handle, FALSE, &cfi);
 //  std::cout << "Object Field created" << std::endl;
 }
 
