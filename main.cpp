@@ -26,8 +26,8 @@ int main(void) {
 
   field->import(map->build(Vector(0, 0), Vector(16, 16)), Vector(16, 16));
   field->refresh();
-  field->print('@', Vector(2, 3));
-  field->printStr("VIXODA HET", Vector(4, 10));
+  field->print('@', Vector(2, 3), HIGH_MAGENTA);
+  field->printStr("VIXODA HET", Vector(4, 10), HIGH_RED);
   field->setCursorPos(Vector(0, 20));
 
   return 0;

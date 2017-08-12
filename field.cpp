@@ -28,15 +28,13 @@ void Field::import(char** m_tab, Vector m_size) {
 }
 
 void Field::refresh() {
-  char str[32];
+  setColor(HIGH_CYAN);
+  printStr(strcat(strcpy(new char[32], "Light Engine v"), VERSION), Vector(0, 0));
+  setColor(WHITE);
 
-  strcpy(str, "Light Engine v");
-  printStr(strcat(str, VERSION), Vector(0, 0));
-
-  for (auto x = 0; x <= size.x; x++) {
+  for (auto x = 0; x <= size.x; x++)
     for (auto y = 0; y <= size.y; y++)
       print(tab[x][y], Vector(x + 1, y + 2));
-  }
 }
 
 void Field::setCursorPos(Vector pos) {
@@ -45,14 +43,30 @@ void Field::setCursorPos(Vector pos) {
   SetConsoleCursorPosition(handle, cursorPos);
 }
 
+void Field::setColor(int color) {
+  SetConsoleTextAttribute(handle, color);
+}
+
 void Field::print(char symbol, Vector coords) {
   setCursorPos(coords);
   std::cout << symbol;
 }
 
+void Field::print(char symbol, Vector coords, int color) {
+  setColor(color);
+  print(symbol, coords);
+  setColor(WHITE);
+}
+
 void Field::printStr(const char* str, Vector coords) {
   setCursorPos(coords);
   std::cout << str;
+}
+
+void Field::printStr(const char* str, Vector coords, int color) {
+  setColor(color);
+  printStr(str, coords);
+  setColor(WHITE);
 }
 
 void Field::createWindow(Vector min, Vector max, char bg) {

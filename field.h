@@ -18,8 +18,11 @@ public:
   void import(char** m_tab, Vector m_size);
   void refresh();
   void setCursorPos(Vector pos);
+  void setColor(int color);
   void print(char symbol, Vector coords);
+  void print(char symbol, Vector coords, int color);
   void printStr(const char* str, Vector coords);
+  void printStr(const char* str, Vector coords, int color);
   void createWindow(Vector min, Vector max, char bg);
 };
 

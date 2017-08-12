@@ -13,9 +13,9 @@ Map::Map(Vector m_size) {
   }
 }
 
-Map::Map(FILE file) {
-  this->file = file;
-  load();
+Map::Map(std::ifstream& file) {
+//  this->file = file;
+  load(file);
 }
 
 Map::~Map() {
@@ -53,11 +53,11 @@ void Map::setSize(Vector size) {
   this->size = size;
 }
 
-void Map::load() {
+void Map::load(std::ifstream& file) {
   //
 }
 
-void Map::save() {
+void Map::save(std::ofstream& file) {
   //
 }
 
