@@ -12,8 +12,8 @@ Field::Field(Vector m_size) {
 
   cfi.cbSize = sizeof(cfi);
   cfi.nFont = 0;
-  cfi.dwFontSize.X = 14;
-  cfi.dwFontSize.Y = 14;
+  cfi.dwFontSize.X = 16;
+  cfi.dwFontSize.Y = 16;
   cfi.FontFamily = FF_DONTCARE;
   cfi.FontWeight = FW_NORMAL;
   std::wcscpy(cfi.FaceName, L"Courier New"); // Consolas
@@ -56,9 +56,13 @@ void Field::setColor(int color) {
   SetConsoleTextAttribute(handle, color);
 }
 
+void Field::print(char symbol) {
+  std::cout << symbol;
+}
+
 void Field::print(char symbol, Vector coords) {
   setCursorPos(coords);
-  std::cout << symbol;
+  print(symbol);
 }
 
 void Field::print(char symbol, Vector coords, int color) {
@@ -67,14 +71,30 @@ void Field::print(char symbol, Vector coords, int color) {
   setColor(WHITE);
 }
 
-void Field::printStr(const char* str, Vector coords) {
-  setCursorPos(coords);
+void Field::print(char symbol, int color) {
+  setColor(color);
+  print(symbol);
+  setColor(WHITE);
+}
+
+void Field::printStr(char* str) {
   std::cout << str;
 }
 
-void Field::printStr(const char* str, Vector coords, int color) {
+void Field::printStr(char* str, Vector coords) {
+  setCursorPos(coords);
+  printStr(str);
+}
+
+void Field::printStr(char* str, Vector coords, int color) {
   setColor(color);
   printStr(str, coords);
+  setColor(WHITE);
+}
+
+void Field::printStr(char* str, int color) {
+  setColor(color);
+  printStr(str);
   setColor(WHITE);
 }
 

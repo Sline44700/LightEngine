@@ -22,10 +22,14 @@ public:
   void setCursorPos(Vector pos);
   void setColor(int color);
   void setFont(Vector size);
+  void print(char symbol);
   void print(char symbol, Vector coords);
   void print(char symbol, Vector coords, int color);
-  void printStr(const char* str, Vector coords);
-  void printStr(const char* str, Vector coords, int color);
+  void print(char symbol, int color);
+  void printStr(char* str);
+  void printStr(char* str, Vector coords);
+  void printStr(char* str, Vector coords, int color);
+  void printStr(char* str, int color);
   void createWindow(Vector min, Vector max, char bg);
 };
 

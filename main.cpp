@@ -29,12 +29,13 @@ int main(void) {
   field->import(map->build(Vector(0, 0), Vector(16, 16)), Vector(16, 16));
   field->refresh();
   field->print('@', Vector(2, 3), HIGH_MAGENTA);
-  field->printStr("VIXODA HET", Vector(4, 10), HIGH_RED);
+  field->printStr(strcpy(new char, "VIXODA HET"), Vector(4, 10), HIGH_RED);
   field->setCursorPos(Vector(0, 20));
 
   getch();
 //  delete map;
 //  delete field;
+  system("cls");
 
   char name[32];
   Map* map2 = new Map(strcpy(name, "maps/easy.txt"));
@@ -42,6 +43,8 @@ int main(void) {
   Field* field2 = new Field(size);
   field2->import(map2->build(Vector(0, 0), size), size);
   field2->refresh();
+  field->print('@', Vector(2, 3), HIGH_MAGENTA);
+  field->print('+', Vector(9, 10), HIGH_RED);
   getch();
 
   return 0;
