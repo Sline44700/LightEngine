@@ -55,8 +55,8 @@ int main(int argc, char *argv[]) {
   field2->refresh();
   field2->print('@', Vector(2, 3), HIGH_MAGENTA);
   field2->print('+', Vector(9, 10), HIGH_RED);
-  field2->printStr(strcpy(new char, "arrows = moves"), Vector(0, 13));
-  field2->printStr(strcpy(new char, "esc = quit"), Vector(0, 14));
+  field2->printStr(strcpy(new char[16], "arrows = moves"), Vector(0, 13));
+  field2->printStr(strcpy(new char[16], "esc = quit"), Vector(0, 14));
 
   int constTab[] = {VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_ESCAPE};
   void (*funcTab[])(Controller*) = {Left, Right, Up, Down, Esc};
@@ -109,5 +109,5 @@ void Down(Controller* ctrl) {
 }
 
 void Esc(Controller* ctrl) {
-  std::cout << "Esc" << std::endl;
+  // Nothing do here
 }
