@@ -20,11 +20,12 @@
 //       4) Console
 //       5) Camera?
 
-void Left(Controller* ctrl);
-void Right(Controller* ctrl);
-void Up(Controller* ctrl);
-void Down(Controller* ctrl);
-void Esc(Controller *ctrl);
+void Move(Controller* ctrl, int x, int y);
+void Left(Controller* ctrl) { Move(ctrl, -1, 0); }
+void Right(Controller* ctrl) { Move(ctrl, 1, 0); }
+void Up(Controller* ctrl) { Move(ctrl, 0, -1); }
+void Down(Controller* ctrl)  { Move(ctrl, 0, 1); }
+void Esc(Controller *ctrl) { ctrl->SetActivity(false); }
 
 Vector player(1, 1);
 Map* map2 = new Map(strcpy(new char[32], "maps/easy.txt"));
@@ -43,7 +44,7 @@ int main(int argc, char *argv[]) {
   field->import(map->build(Vector(0, 0), Vector(16, 16)), Vector(16, 16));
   field->refresh();
   field->print('@', Vector(2, 3), HIGH_MAGENTA);
-  field->printStr(strcpy(new char, "VIXODA HET"), Vector(4, 10), HIGH_RED);
+  field->printStr(strcpy(new char[16], "VIXODA HET"), Vector(4, 10), HIGH_RED);
   field->setCursorPos(Vector(0, 20));
 
   getch();
@@ -64,50 +65,19 @@ int main(int argc, char *argv[]) {
   ctrl.scan();
 
   getch();
+  std::cout << "Why is this not displayed?";
+  getch();
 
   return 0;
 }
 
-void Left(Controller* ctrl) {
-  if (!map2->existObj(Vector(player.x - 1, player.y))) {
+void Move(Controller* ctrl, int x, int y) {
+  if (!map2->existObj(Vector(player.x + x, player.y + y))) {
     field2->print('.', Vector(player.x + 1, player.y + 2), GRAY);
-    player.x--;
+    player.x += x;
+    player.y += y;
     field2->print('@', Vector(player.x + 1, player.y + 2), HIGH_MAGENTA);
   }
-  if (player.x == 8 && player.y == 8) return;
-  ctrl->scan();
+  if (player.x == 8 && player.y == 8) ctrl->SetActivity(false);
 }
 
-void Right(Controller* ctrl) {
-  if (!map2->existObj(Vector(player.x + 1, player.y))) {
-    field2->print('.', Vector(player.x + 1, player.y + 2), GRAY);
-    player.x++;
-    field2->print('@', Vector(player.x + 1, player.y + 2), HIGH_MAGENTA);
-  }
-  if (player.x == 8 && player.y == 8) return;
-  ctrl->scan();
-}
-
-void Up(Controller* ctrl) {
-  if (!map2->existObj(Vector(player.x, player.y - 1))) {
-    field2->print('.', Vector(player.x + 1, player.y + 2), GRAY);
-    player.y--;
-    field2->print('@', Vector(player.x + 1, player.y + 2), HIGH_MAGENTA);
-  }
-  if (player.x == 8 && player.y == 8) return;
-  ctrl->scan();
-}
-
-void Down(Controller* ctrl) {
-  if (!map2->existObj(Vector(player.x, player.y + 1))) {
-    field2->print('.', Vector(player.x + 1, player.y + 2), GRAY);
-    player.y++;
-    field2->print('@', Vector(player.x + 1, player.y + 2), HIGH_MAGENTA);
-  }
-  if (player.x == 8 && player.y == 8) return;
-  ctrl->scan();
-}
-
-void Esc(Controller* ctrl) {
-  // Nothing do here
-}

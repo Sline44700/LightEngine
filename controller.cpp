@@ -21,7 +21,6 @@ void Controller::scan() {
     for (auto i = 0; i < keys; i++)
       if (GetAsyncKeyState(constTab[i]) & 1) {
         funcTab[i](this);
-        SetActivity(false);
       }
   }
 }
