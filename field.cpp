@@ -18,6 +18,9 @@ Field::Field(Vector m_size) {
   cfi.FontWeight = FW_NORMAL;
   std::wcscpy(cfi.FaceName, L"Courier New"); // Consolas
   SetCurrentConsoleFontEx(handle, FALSE, &cfi);
+  info.dwSize = 1;
+  info.bVisible = true;
+  SetConsoleCursorInfo(handle, &info);
 //  std::cout << "Object Field created" << std::endl;
 }
 
@@ -64,6 +67,17 @@ void Field::print(char symbol) {
   std::cout << symbol;
 }
 
+void Field::setCursorVisibility(bool visibility) {
+  info.dwSize = 1;
+  info.bVisible = visibility;
+  SetConsoleCursorInfo(handle, &info);
+}
+
+void Field::setCursorThickness(int thickness) {
+  info.dwSize = thickness;
+  SetConsoleCursorInfo(handle, &info);
+}
+
 void Field::print(char symbol, Vector coords) {
   setCursorPos(coords);
   print(symbol);
@@ -103,5 +117,17 @@ void Field::printStr(char* str, int color) {
 }
 
 void Field::createWindow(Vector min, Vector max, char bg) {
+  //
+}
+
+Window::Window(Vector min, Vector max) {
+  //
+}
+
+Window::Window(Vector min, Vector max, char bg) {
+  //
+}
+
+Window::~Window() {
   //
 }

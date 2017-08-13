@@ -21,6 +21,7 @@ private:
   void setSize(Vector size);
 
 public:
+  Map() {} // временно
   Map(Vector m_size);
   Map(char* name);
   ~Map();

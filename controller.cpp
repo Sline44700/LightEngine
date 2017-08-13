@@ -17,6 +17,7 @@ Controller::~Controller() {
 
 void Controller::scan() {
   // if (!active), say that not active;
+  // or call onExitFunc
   while (active) {
     for (auto i = 0; i < keys; i++)
       if (GetAsyncKeyState(constTab[i]) & 1) {

@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define VERSION "0.01 alpha"
+#define VERSION "0.02 alpha"
 // For mapobjects moving
 #define LEFT 0
 #define RIGHT 1

@@ -12,6 +12,7 @@ private:
   HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
   COORD cursorPos;
   CONSOLE_FONT_INFOEX cfi;
+  CONSOLE_CURSOR_INFO info;
   void fill();
 
 public:
@@ -22,6 +23,8 @@ public:
   void setCursorPos(Vector pos);
   void setColor(int color);
   void setFont(Vector size);
+  void setCursorVisibility(bool visibility);
+  void setCursorThickness(int thickness) ;
   void print(char symbol);
   void print(char symbol, Vector coords);
   void print(char symbol, Vector coords, int color);
@@ -31,6 +34,19 @@ public:
   void printStr(char* str, Vector coords, int color);
   void printStr(char* str, int color);
   void createWindow(Vector min, Vector max, char bg);
+};
+
+class Window {
+private:
+  Field* field;
+  Vector min;
+  Vector max;
+  char bg;
+public:
+  Window(Vector min, Vector max);
+  Window(Vector min, Vector max, char bg);
+  ~Window();
+  //
 };
 
 #endif // FIELD_H
