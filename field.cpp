@@ -3,11 +3,11 @@
 
 Field::Field(Vector m_size) {
   size = m_size;
-  tab = new char*[size.x];
+  data = new char*[size.x];
   for (auto x = 0; x <= size.x; x++) {
-    tab[x] = new char[size.y];
+    data[x] = new char[size.y];
     for (auto y = 0; y <= size.y; y++)
-      tab[x][y] = ' ';
+      data[x][y] = ' ';
   }
 
   cfi.cbSize = sizeof(cfi);
@@ -33,10 +33,10 @@ void Field::fill() {
   //
 }
 
-void Field::import(char** m_tab, Vector m_size) {
+void Field::import(char** m_data, Vector m_size) {
   for (auto x = 0; x <= size.x; x++)
     for (auto y = 0; y <= size.y; y++)
-      tab[x][y] = m_tab[x][y];
+      data[x][y] = m_data[x][y];
 }
 
 void Field::refresh() {
@@ -46,10 +46,10 @@ void Field::refresh() {
 
   for (auto x = 0; x <= size.x; x++)
     for (auto y = 0; y <= size.y; y++) {
-      if (tab[x][y] != '.') // kostyl
-        print(tab[x][y], Vector(x + 1, y + 2));
+      if (data[x][y] != '.') // kostyl
+        print(data[x][y], Vector(x + 1, y + 2));
       else
-        print(tab[x][y], Vector(x + 1, y + 2), GRAY);
+        print(data[x][y], Vector(x + 1, y + 2), GRAY);
     }
 }
 
@@ -78,14 +78,14 @@ void Field::setCursorThickness(int thickness) {
   SetConsoleCursorInfo(handle, &info);
 }
 
-void Field::print(char symbol, Vector coords) {
-  setCursorPos(coords);
+void Field::print(char symbol, Vector pos) {
+  setCursorPos(pos);
   print(symbol);
 }
 
-void Field::print(char symbol, Vector coords, int color) {
+void Field::print(char symbol, Vector pos, int color) {
   setColor(color);
-  print(symbol, coords);
+  print(symbol, pos);
   setColor(WHITE);
 }
 
@@ -99,14 +99,14 @@ void Field::printStr(char* str) {
   std::cout << str;
 }
 
-void Field::printStr(char* str, Vector coords) {
-  setCursorPos(coords);
+void Field::printStr(char* str, Vector pos) {
+  setCursorPos(pos);
   printStr(str);
 }
 
-void Field::printStr(char* str, Vector coords, int color) {
+void Field::printStr(char* str, Vector pos, int color) {
   setColor(color);
-  printStr(str, coords);
+  printStr(str, pos);
   setColor(WHITE);
 }
 

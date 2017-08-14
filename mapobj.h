@@ -6,7 +6,7 @@ class Map;
 
 class MapObj {
 private:
-  Vector coords;
+  Vector pos;
 //  string name;
   char symbol = '?';
   int health = -1;
@@ -15,10 +15,10 @@ private:
 //  bool impenetrable = true;
 
 public:
-  MapObj(Map* m_map, Vector m_coords);
+  MapObj(Map* m_map, Vector m_pos);
   ~MapObj();
-  Vector getPos() { return coords; }
-  inline void setPos(Vector m_coords) { coords = m_coords; }
+  Vector getPos() { return pos; }
+  inline void setPos(Vector m_pos) { pos = m_pos; }
   void move(int side, int steps); // 0 - left, 1 - right, 2 - up, 3 - down
   inline int getHealth() { return health; }
   inline void setHealth(int m_health) { health = m_health; }

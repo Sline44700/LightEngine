@@ -16,11 +16,12 @@
 //using namespace std;
 // TODO: 1) load/save +
 //       2) Controller +
-//       2.5) Menu
+//       2.5) Menu (посмотреть, как можно передать аргументы)
+//       2.75) Player
 //       3) Config
 //       4) Console
 //       5) Camera?
-//       cords => pos; tab => data
+//       cords => pos; tab => data +
 
 void Move(Controller* ctrl, int x, int y);
 void Left(Controller* ctrl) { Move(ctrl, -1, 0); }
@@ -64,9 +65,9 @@ int main(int argc, char *argv[]) {
   field2->printStr(strcpy(new char[16], "3 = hard"), Vector(0, 2));
   getch();
 
-  int menu_constTab[] = {VK_HELP + 2, VK_HELP + 3, VK_HELP + 4};
-  void (*menu_funcTab[])(Controller*) = {Easy, Medium, Hard};
-  Controller ctrl_menu(menu_constTab, menu_funcTab, 3);
+  int menu_constData[] = {VK_HELP + 2, VK_HELP + 3, VK_HELP + 4};
+  void (*menu_funcData[])(Controller*) = {Easy, Medium, Hard};
+  Controller ctrl_menu(menu_constData, menu_funcData, 3);
   ctrl_menu.scan();
   system("cls");
 
@@ -80,9 +81,9 @@ int main(int argc, char *argv[]) {
   field2->printStr(strcpy(new char[16], "steps = "), Vector(0, size.y + 4 + 2));
   field2->printStr(strcpy(new char[16], itoa(steps, new char[5], 10)), Vector(8, size.y + 4 + 2));
 
-  int constTab[] = {VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_ESCAPE};
-  void (*funcTab[])(Controller*) = {Left, Right, Up, Down, Esc};
-  Controller ctrl(constTab, funcTab, 5);
+  int constData[] = {VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_ESCAPE};
+  void (*funcData[])(Controller*) = {Left, Right, Up, Down, Esc};
+  Controller ctrl(constData, funcData, 5);
   ctrl.scan();
 
   getch();

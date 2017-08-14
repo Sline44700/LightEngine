@@ -1,9 +1,9 @@
 #include "mapobj.h"
 #include "map.h"
 
-MapObj::MapObj(Map *m_map, Vector m_coords) {
-  coords = m_coords;
-  m_map->addObj(this, coords);
+MapObj::MapObj(Map *m_map, Vector m_pos) {
+  pos = m_pos;
+  m_map->addObj(this, pos);
 }
 
 MapObj::~MapObj() {

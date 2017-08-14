@@ -3,9 +3,9 @@
 #include <windows.h>
 #include <iostream>
 
-Controller::Controller(int* m_constTab, void (** m_funcTab)(Controller*), int m_keys) {
-  funcTab = m_funcTab;
-  constTab = m_constTab;
+Controller::Controller(int* m_constData, void (** m_funcData)(Controller*), int m_keys) {
+  funcData = m_funcData;
+  constData = m_constData;
   keys = m_keys;
   // проверка на правильность этих самых функций
   // например, они должны иметь равные размеры
@@ -20,8 +20,8 @@ void Controller::scan() {
   // or call onExitFunc
   while (active) {
     for (auto i = 0; i < keys; i++)
-      if (GetAsyncKeyState(constTab[i]) & 1) {
-        funcTab[i](this);
+      if (GetAsyncKeyState(constData[i]) & 1) {
+        funcData[i](this);
       }
   }
 }

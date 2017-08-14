@@ -1,7 +1,7 @@
 #include "wall.h"
 
-Wall::Wall(Map* map, Vector coords) : MapObj(map, coords) {
+Wall::Wall(Map* map, Vector pos) : MapObj(map, pos) {
   setSymbol('|');
-//  MapObj::MapObj(map, coords);
+//  MapObj::MapObj(map, pos);
 }
 

@@ -9,19 +9,19 @@ public:
   inline MapCell() {}
   inline ~MapCell() {/*delete obj;*/}
   MapObj* obj = NULL;
-  Vector coords;
+  Vector pos;
 };
 
 class Map {
 private:
-  MapCell** tab;
+  MapCell** data;
   Vector size;
   std::fstream file;
   void read(char** data);
   void setSize(Vector size);
 
 public:
-  Map() {} // временно
+  Map(); // временно
   Map(Vector m_size);
   Map(char* name);
   ~Map();
@@ -29,9 +29,9 @@ public:
   void load(char* name);
   void save(char* name);
   void destroy(); // уничтожает все объекты на карте
-  void addObj(MapObj* obj, Vector coords);
-  MapObj* findObj(Vector coords); // возвращает объект по координатам
-  bool existObj(Vector coords); // проверяет, существует ли объект на данных коордах
+  void addObj(MapObj* obj, Vector pos);
+  MapObj* findObj(Vector pos); // возвращает объект по координатам
+  bool existObj(Vector pos); // проверяет, существует ли объект на данных коордах
   inline Vector getSize() {return size;}
 };
 

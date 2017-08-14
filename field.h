@@ -7,7 +7,7 @@
 
 class Field {
 private:
-  char** tab;
+  char** data;
   Vector size;
   HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
   COORD cursorPos;
@@ -18,7 +18,7 @@ private:
 public:
   Field(Vector m_size);
   ~Field();
-  void import(char** m_tab, Vector m_size);
+  void import(char** m_data, Vector m_size);
   void refresh();
   void setCursorPos(Vector pos);
   void setColor(int color);
@@ -26,12 +26,12 @@ public:
   void setCursorVisibility(bool visibility);
   void setCursorThickness(int thickness) ;
   void print(char symbol);
-  void print(char symbol, Vector coords);
-  void print(char symbol, Vector coords, int color);
+  void print(char symbol, Vector pos);
+  void print(char symbol, Vector pos, int color);
   void print(char symbol, int color);
   void printStr(char* str);
-  void printStr(char* str, Vector coords);
-  void printStr(char* str, Vector coords, int color);
+  void printStr(char* str, Vector pos);
+  void printStr(char* str, Vector pos, int color);
   void printStr(char* str, int color);
   void createWindow(Vector min, Vector max, char bg);
 };

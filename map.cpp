@@ -4,13 +4,17 @@
 #include <fstream>
 #include <iostream>
 
+Map::Map() {
+  //
+}
+
 Map::Map(Vector m_size) {
   size = m_size;
-  tab = new MapCell*[size.x];
+  data = new MapCell*[size.x];
   for (auto x = 0; x <= size.x; x++) {
-    tab[x] = new MapCell[size.y];
+    data[x] = new MapCell[size.y];
     /*for (auto y = 0; y < size.y; y++)
-      tab[x][y] = Floor();*/
+      data[x][y] = Floor();*/
   }
 }
 
@@ -22,8 +26,8 @@ Map::Map(char* name) {
 Map::~Map() {
 //  std::cout << "Map deconstructed" << std::endl;
 /*  for (auto x = 0; x < size.x; x++)
-    delete[] tab[x];
-  delete[] tab;*/
+    delete[] data[x];
+  delete[] data;*/
 }
 
 char** Map::build(Vector start, Vector end) {
@@ -39,7 +43,7 @@ char** Map::build(Vector start, Vector end) {
   for (auto x = 0; x <= size.x; x++) {
     field[x] = new char[size.y];
     for (auto y = 0; y <= size.y; y++) {
-      cell = &tab[x][y];
+      cell = &data[x][y];
       if (cell != NULL && cell->obj != NULL)
         field[x][y] = cell->obj->getSymbol();
       else
@@ -78,9 +82,9 @@ void Map::load(char* name) {
   file.seekg(0, file.beg);
   file.clear();
   // creating table
-  tab = new MapCell*[size.x];
+  data = new MapCell*[size.x];
   for (auto x = 0; x <= size.x; x++)
-    tab[x] = new MapCell[size.y + 1];
+    data[x] = new MapCell[size.y + 1];
   // loading objs
   file.seekg(0, file.beg);
   file.clear();
@@ -108,18 +112,18 @@ void Map::destroy() {
   //
 }\
 
-void Map::addObj(MapObj* obj, Vector coords) {
-  MapCell* cell = &tab[coords.x][coords.y];
+void Map::addObj(MapObj* obj, Vector pos) {
+  MapCell* cell = &data[pos.x][pos.y];
 
   if (cell->obj == NULL) {
     cell->obj = obj;
     // TODO: std -> Console
-//  std::cout << "Object '" << obj->getSymbol() << "' added to coords " << coords.x << " " << coords.y << std::endl;
+//  std::cout << "Object '" << obj->getSymbol() << "' added to pos " << pos.x << " " << pos.y << std::endl;
   }
 }
 
-MapObj* Map::findObj(Vector coords) {
-  MapCell* cell = &tab[coords.x][coords.y];
+MapObj* Map::findObj(Vector pos) {
+  MapCell* cell = &data[pos.x][pos.y];
   MapObj* obj = cell->obj;
 
   if (obj != NULL)
@@ -127,8 +131,8 @@ MapObj* Map::findObj(Vector coords) {
   else return NULL;
 }
 
-bool Map::existObj(Vector coords) {
-  MapCell* cell = &tab[coords.x][coords.y];
+bool Map::existObj(Vector pos) {
+  MapCell* cell = &data[pos.x][pos.y];
   MapObj* obj = cell->obj;
 
   if (obj != NULL) return true;

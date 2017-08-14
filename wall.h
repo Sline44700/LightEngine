@@ -6,8 +6,8 @@
 class Wall : public MapObj {
 public:
 //  using MapObj::MapObj;
-//  Wall(Map* map, Vector coords) : MapObj(map, coords) {}
-  Wall(Map* map, Vector coords);
+//  Wall(Map* map, Vector pos) : MapObj(map, pos) {}
+  Wall(Map* map, Vector pos);
 //  Wall::Wall();
 };
 

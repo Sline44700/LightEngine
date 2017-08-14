@@ -5,10 +5,10 @@ class Controller {
 private:
   bool active = true;
   int keys = 0;
-  void (**funcTab)(Controller*);
-  int *constTab;
+  void (**funcData)(Controller*);
+  int *constData;
 public:
-  Controller(int* m_constTab, void (**m_funcTab)(Controller*), int m_keys);
+  Controller(int* m_constData, void (**m_funcData)(Controller*), int m_keys);
   ~Controller();
   void scan();
   inline bool GetActivity() { return active; }
