@@ -4,9 +4,9 @@
 Field::Field(Vector m_size) {
   size = m_size;
   data = new char*[size.x];
-  for (auto x = 0; x <= size.x; x++) {
+  for (auto x = 0; x < size.x; x++) {
     data[x] = new char[size.y];
-    for (auto y = 0; y <= size.y; y++)
+    for (auto y = 0; y < size.y; y++)
       data[x][y] = ' ';
   }
 
@@ -34,8 +34,9 @@ void Field::fill() {
 }
 
 void Field::import(char** m_data, Vector m_size) {
-  for (auto x = 0; x <= size.x; x++)
-    for (auto y = 0; y <= size.y; y++)
+  std::cout << size.x << " " << size.y;
+  for (auto x = 0; x < size.x; x++)
+    for (auto y = 0; y < size.y; y++)
       data[x][y] = m_data[x][y];
 }
 
@@ -44,8 +45,8 @@ void Field::refresh() {
   printStr(strcat(strcpy(new char[32], "Light Engine v"), VERSION), Vector(0, 0));
   setColor(WHITE);
 
-  for (auto x = 0; x <= size.x; x++)
-    for (auto y = 0; y <= size.y; y++) {
+  for (auto x = 0; x < size.x; x++)
+    for (auto y = 0; y < size.y; y++) {
       if (data[x][y] != '.') // kostyl
         print(data[x][y], Vector(x + 1, y + 2));
       else

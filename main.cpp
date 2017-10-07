@@ -19,7 +19,12 @@
 //       2.5) Menu (посмотреть, как можно передать аргументы)
 //       2.75) Player
 //       3) Config
-//       4) Console
+//       4) Console() ->
+//          char data[CONSOLE_WIDTH][CONSONE_DEPTH];
+//          char errors?
+//          можно хранить в кодах
+//          вызывается по нажатию `
+//          char** GetData();
 //       5) Camera?
 //       cords => pos; tab => data +
 
@@ -37,11 +42,11 @@ Field* field2 = new Field(size);
 int steps = 0;
 
 void Easy(Controller *ctrl) { /*map2->load(strcpy(new char[16], "maps/easy.txt"));*/ ctrl->SetActivity(false); }
-void Medium(Controller *ctrl) { /*map2->load(strcpy(new char[16], "maps/medium.txt"));*/ ctrl->SetActivity(false); }
-void Hard(Controller *ctrl) { /*map2->load(strcpy(new char[16], "maps/hard.txt"));*/ ctrl->SetActivity(false); }
+void Medium(Controller *ctrl) { map2->load(strcpy(new char[16], "maps/medium.txt")); ctrl->SetActivity(false); }
+void Hard(Controller *ctrl) { map2->load(strcpy(new char[16], "maps/hard.txt")); ctrl->SetActivity(false); }
 
 int main(int argc, char *argv[]) {
-/*  Field* field = new Field(Vector(16, 16));
+/*  Field* field = new Field(Vector(17, 17));
   Map* map = new Map(Vector(17, 17));
 
   for (auto x = 0; x <= 16; x++)
@@ -75,11 +80,12 @@ int main(int argc, char *argv[]) {
   field2->import(map2->build(Vector(0, 0), size), size);
   field2->refresh();
   field2->print('@', Vector(2, 3), HIGH_MAGENTA);
-  field2->print('+', Vector(size.x - 1 + 1, size.y - 1 + 2), HIGH_RED);
+  field2->print('+', Vector(size.x - 1, size.y - 1 + 1), HIGH_RED);
   field2->printStr(strcpy(new char[16], "arrows = moves"), Vector(0, size.y + 2 + 2));
   field2->printStr(strcpy(new char[16], "esc = quit"), Vector(0, size.y + 3 + 2));
   field2->printStr(strcpy(new char[16], "steps = "), Vector(0, size.y + 4 + 2));
   field2->printStr(strcpy(new char[16], itoa(steps, new char[5], 10)), Vector(8, size.y + 4 + 2));
+//  field2->printStr(strcpy(new char[16], itoa(steps, new char[5], 10)), Vector(8, size.y + 4 + 2));
 
   int constData[] = {VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_ESCAPE};
   void (*funcData[])(Controller*) = {Left, Right, Up, Down, Esc};
@@ -102,6 +108,5 @@ void Move(Controller* ctrl, int x, int y) {
     field2->printStr(strcpy(new char[16], itoa(steps, new char[5], 10)), Vector(8, size.y + 4 + 2));
     field2->print('@', Vector(player.x + 1, player.y + 2), HIGH_MAGENTA);
   }
-  if (player.x == size.x - 1 && player.y == size.y - 1) ctrl->SetActivity(false);
+  if (player.x == size.x - 2 && player.y == size.y - 2) ctrl->SetActivity(false);
 }
-

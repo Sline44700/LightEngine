@@ -11,7 +11,7 @@ Map::Map() {
 Map::Map(Vector m_size) {
   size = m_size;
   data = new MapCell*[size.x];
-  for (auto x = 0; x <= size.x; x++) {
+  for (auto x = 0; x < size.x; x++) {
     data[x] = new MapCell[size.y];
     /*for (auto y = 0; y < size.y; y++)
       data[x][y] = Floor();*/
@@ -40,9 +40,9 @@ char** Map::build(Vector start, Vector end) {
     return field;
   }
 
-  for (auto x = 0; x <= size.x; x++) {
+  for (auto x = 0; x < size.x; x++) {
     field[x] = new char[size.y];
-    for (auto y = 0; y <= size.y; y++) {
+    for (auto y = 0; y < size.y; y++) {
       cell = &data[x][y];
       if (cell != NULL && cell->obj != NULL)
         field[x][y] = cell->obj->getSymbol();
@@ -63,8 +63,8 @@ void Map::load(char* name) {
   if (!file.is_open())
     return;
 
-  size.x = -2;
-  size.y = 0;
+  size.x = -1;
+  size.y = 1;
   char symbol;
   // finding out max of x coords
   while (!file.eof()) {
@@ -83,13 +83,13 @@ void Map::load(char* name) {
   file.clear();
   // creating table
   data = new MapCell*[size.x];
-  for (auto x = 0; x <= size.x; x++)
+  for (auto x = 0; x < size.x; x++)
     data[x] = new MapCell[size.y + 1];
   // loading objs
   file.seekg(0, file.beg);
   file.clear();
-  for (auto x = 0; x <= size.x; x++)
-    for (auto y = 0; y <= size.y; y++) {
+  for (auto x = 0; x < size.x; x++)
+    for (auto y = 0; y < size.y; y++) {
       file.get(symbol);
       if (symbol == ' ' || symbol == '\n') file.get(symbol);
 //      std::cout << std::endl << symbol << " " << x << " " << y;
